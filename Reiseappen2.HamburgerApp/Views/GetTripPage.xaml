@@ -1,0 +1,32 @@
+﻿<Page
+    x:Class="Reiseappen2.HamburgerApp.Views.GetTripPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Behaviors="using:Template10.Behaviors"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:local="using:Reiseappen2.HamburgerApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Reiseappen2.HamburgerApp.ViewModels"
+    mc:Ignorable="d">
+    <Page.DataContext>
+        <vm:GetTripPageViewModel x:Name="ViewModel"></vm:GetTripPageViewModel>
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        
+        <StackPanel>
+            <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Get Trips Page">
+            </controls:PageHeader>
+            <ListBox Name="NameOfTripBox" SelectedValue="{x:Bind ViewModel.SelectedTrip,Mode=TwoWay}" ItemsSource="{Binding Path=Trips }" ></ListBox>
+            <RelativePanel>
+                <Button Name="GetInfo" Content="Get Full Trip" Click="{x:Bind ViewModel.GetInfo_Click}"></Button>
+                <TextBlock Name="InfoText" Text="First choose a trip and press the button, to change a entry double click the entry from the list!" RelativePanel.RightOf="GetInfo" RelativePanel.AlignVerticalCenterWithPanel="True" Margin="34,0,-34,0"></TextBlock>
+            </RelativePanel>
+            <ListBox Name="TripsListBox" ItemsSource="{x:Bind ViewModel.Days}" DoubleTapped="{x:Bind ViewModel.Item_Selected}"/>
+            <!--<Button Name="UpdateInfo" Content="Update Info" Click="{x:Bind ViewModel.UpdateInfo_Click}"></Button>-->
+        </StackPanel>
+    </Grid>
+</Page>

@@ -1,0 +1,59 @@
+﻿<Page
+    x:Class="Reiseappen2.HamburgerApp.Views.AddTripPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Behaviors="using:Template10.Behaviors"
+    xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:controls="using:Template10.Controls"
+    xmlns:local="using:Reiseappen2.HamburgerApp.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Reiseappen2.HamburgerApp.ViewModels"
+    mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:AddTripPageViewModel x:Name="ViewModel"></vm:AddTripPageViewModel>
+    </Page.DataContext>
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+       
+        <StackPanel>
+            <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Add Tripday Page">
+            </controls:PageHeader>
+            <TextBlock Text="If you didnt sleep in a hotel, you can write where you slept. Or if you didnt have dinner you can put 'nothing'."></TextBlock>
+            <RelativePanel>
+                <TextBlock x:Name="NameBlock" Text="Choose a trip:" TextWrapping="Wrap" Margin="0,5,0,0"></TextBlock>
+                <ComboBox x:Name="DropDownList" Width="150" RelativePanel.RightOf="NameBlock" Margin="63,0,0,0" ItemsSource="{x:Bind ViewModel.Trips}" SelectedValue="{x:Bind ViewModel.SelectedTrip,Mode=TwoWay}">
+                    <!--<ComboBoxItem Content="{x:Bind ViewModel.Trips}"></ComboBoxItem>-->
+                </ComboBox>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="DayBlock" Text="Day:" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="DayBox" Width="30" RelativePanel.RightOf="DayBlock" Margin="126,0,0,0" Text="{x:Bind ViewModel.Day, Mode=TwoWay}"/>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="CityBlock" Text="City:" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="CityBox" Width="200" RelativePanel.RightOf="CityBlock" Margin="126,0,0,0" Text="{x:Bind ViewModel.City, Mode=TwoWay}"/>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="HotelBlock" Text="Hotel:" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="HotelBox" Width="200" RelativePanel.RightOf="HotelBlock" Margin="115,0,0,0" Text="{x:Bind ViewModel.Hotel, Mode=TwoWay}"/>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="DinnerBlock" Text="Dinner:" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="DinnerBox" Width="200" RelativePanel.RightOf="DinnerBlock" Margin="107,0,0,0" Text="{x:Bind ViewModel.Dinner, Mode=TwoWay}"/>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="MoneyBlock" Text="Money Spent:" TextWrapping="Wrap" Margin="0,5,0,0"/>
+                <TextBox x:Name="MoneyBox" Width="200" RelativePanel.RightOf="MoneyBlock" Margin="63,0,0,0" Text="{x:Bind ViewModel.Money, Mode=TwoWay}"/>
+            </RelativePanel>
+            <RelativePanel>
+                <TextBlock x:Name="InfoBlock" Text="Additional Information:" TextWrapping="Wrap" Margin="0,5,0,0"></TextBlock>
+                <TextBox x:Name="InfoBox" Width="500" RelativePanel.RightOf="InfoBlock" Margin="1,0,0,0" Text="{x:Bind ViewModel.Info, Mode=TwoWay}"></TextBox>
+            </RelativePanel>
+
+            <Button Name="AddTrip" Content="Add Day" Click="{x:Bind ViewModel.AddDay_Click}" Margin="10,10,0,0"/>
+        </StackPanel>
+    </Grid>
+</Page>

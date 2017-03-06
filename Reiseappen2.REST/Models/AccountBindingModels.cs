@@ -6,6 +6,7 @@ namespace Reiseappen2.REST.Models
 {
     // Models used as parameters to AccountController actions.
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
     public class AddExternalLoginBindingModel
     {
         [Required]
@@ -57,8 +58,10 @@ namespace Reiseappen2.REST.Models
         public string Email { get; set; }
     }
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
     public class RemoveLoginBindingModel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
         [Required]
         [Display(Name = "Login provider")]
         public string LoginProvider { get; set; }

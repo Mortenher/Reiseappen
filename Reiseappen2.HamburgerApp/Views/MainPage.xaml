@@ -1,0 +1,59 @@
+<Page x:Class="Reiseappen2.HamburgerApp.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:Behaviors="using:Template10.Behaviors"
+      xmlns:Core="using:Microsoft.Xaml.Interactions.Core"
+      xmlns:Interactivity="using:Microsoft.Xaml.Interactivity"
+      xmlns:controls="using:Template10.Controls"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="using:Reiseappen2.HamburgerApp.Views"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:vm="using:Reiseappen2.HamburgerApp.ViewModels" mc:Ignorable="d">
+
+    <Page.DataContext>
+        <vm:MainPageViewModel x:Name="ViewModel" />
+    </Page.DataContext>
+
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Main Page">
+
+            <!--  secondary commands  -->
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
+                <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
+            </controls:PageHeader.SecondaryCommands>
+
+        </controls:PageHeader>
+
+        <StackPanel RelativePanel.Below="pageHeader">
+            <RelativePanel>
+                <TextBlock Name="TextMoneySpent" Text="Average Money Spent Per Day = "></TextBlock>
+                <TextBlock Name="MoneySpentBox" Text="{x:Bind ViewModel.MoneySpent, Mode=TwoWay}" RelativePanel.RightOf="TextMoneySpent" Margin="10,0,0,0"></TextBlock>
+            </RelativePanel>
+
+            <RelativePanel>
+                <TextBlock Name="TextDinner" Text="Dinners you have eaten the most = "></TextBlock>
+                <TextBlock Name="DinnerBox" Text="{x:Bind ViewModel.MostEatenDinner, Mode=TwoWay}" RelativePanel.RightOf="TextDinner" Margin="10,0,0,0"></TextBlock>
+            </RelativePanel>
+
+            <RelativePanel>
+                <TextBlock Name="TextDay" Text="Your trips averages = "></TextBlock>
+                <TextBlock Name="DayBox" Text="{x:Bind ViewModel.AverageTripLength, Mode=TwoWay}" RelativePanel.RightOf="TextDay" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Name="TextDay2" Text=" days" RelativePanel.RightOf="DayBox"></TextBlock>
+            </RelativePanel>
+
+            <RelativePanel>
+                <ComboBox x:Name="DropDownList" Width="150" ItemsSource="{x:Bind ViewModel.Trips}" SelectedValue="{x:Bind ViewModel.SelectedTrip,Mode=TwoWay}"></ComboBox>
+                <Button Name="CalculateBtn" Content="Calculate Distance Traveled" RelativePanel.RightOf="DropDownList" Margin="10,0,0,0" Click="{x:Bind ViewModel.CalculateDistanceTraveled_Click}"></Button>
+                <TextBlock Name="DistanceBox" Text="{x:Bind ViewModel.Distance, Mode=OneWay}" RelativePanel.RightOf="CalculateBtn" RelativePanel.AlignVerticalCenterWith="CalculateBtn" Margin="10,0,0,0"></TextBlock>
+                <TextBlock Name="InfoBlock" Text=" This is in kilometers, the calculations are a bit shaky and may not be 100% correct." RelativePanel.RightOf="DistanceBox" RelativePanel.AlignVerticalCenterWith="CalculateBtn"></TextBlock>
+            </RelativePanel>
+        </StackPanel>
+    </RelativePanel>
+</Page>
+

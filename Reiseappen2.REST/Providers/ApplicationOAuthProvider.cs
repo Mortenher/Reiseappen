@@ -13,6 +13,7 @@ using Reiseappen2.REST.Models;
 
 namespace Reiseappen2.REST.Providers
 {
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "Auth")]
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
         private readonly string _publicClientId;
@@ -50,6 +51,7 @@ namespace Reiseappen2.REST.Providers
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)
         {
             foreach (KeyValuePair<string, string> property in context.Properties.Dictionary)
@@ -60,6 +62,7 @@ namespace Reiseappen2.REST.Providers
             return Task.FromResult<object>(null);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             // Resource owner password credentials does not provide a client ID.
@@ -71,6 +74,8 @@ namespace Reiseappen2.REST.Providers
             return Task.FromResult<object>(null);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2234:PassSystemUriObjectsInsteadOfStrings")]
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
         {
             if (context.ClientId == _publicClientId)

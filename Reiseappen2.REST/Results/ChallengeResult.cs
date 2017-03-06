@@ -11,12 +11,15 @@ namespace Reiseappen2.REST.Results
 {
     public class ChallengeResult : IHttpActionResult
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "1")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "login")]
         public ChallengeResult(string loginProvider, ApiController controller)
         {
             LoginProvider = loginProvider;
             Request = controller.Request;
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1726:UsePreferredTerms", MessageId = "Login")]
         public string LoginProvider { get; set; }
         public HttpRequestMessage Request { get; set; }
 
